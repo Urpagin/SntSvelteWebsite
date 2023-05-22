@@ -10,18 +10,34 @@
     }
 </script>
 
-<Card>
-    <div class="item-index">
+<div class="card">
+    <!-- <div class="item-index">
         {item.index}
-    </div>
+    </div> -->
     <button class="close" on:click={() => handleDelete(item.id)}>X</button>
     <p class="text-display">
         {item.text}
     </p>
-</Card>
+</div>
+
+
 
 <style>
-    .item-index {
+
+    .text-display {
+        text-align: left;
+        padding-left: 10px;
+    }
+    .card {
+      background-color: #0f172a;
+      display: grid;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      top: 20px;
+      left: 20px;
+    }
+    
+    /* .item-index {
       position: absolute;
       top: -10px;
       left: -10px;
@@ -34,7 +50,7 @@
       padding: 10px;
       text-align: center;
       font-size: 19px;
-    }
+    } */
   
     .close {
       position: absolute;
