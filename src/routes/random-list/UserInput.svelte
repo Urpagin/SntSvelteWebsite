@@ -4,12 +4,8 @@
   import Card from './Card.svelte'
 
   let text = ''
-
   // truc de modal chosen one oulala
-  let showModal = false
   let chosenText = ''
-
-
 //   let btnDisabled = true
   let message
 
@@ -30,10 +26,7 @@
   })()
 
   // Return a random item from the store
-  console.log(items[Math.floor(Math.random() * items.length)]['text'])
   chosenText = items[Math.floor(Math.random() * items.length)]['text']
-  showModal = true;
-  return items[Math.floor(Math.random() * items.length)]['text']
   }
 
   const handleSubmit = () => {
@@ -132,7 +125,7 @@
 
 
 
-
+<!-- 
 <style>
     /* .main-layout {
         background-color: #0f172a;
@@ -144,4 +137,4 @@
         border-radius: 20px;
     } */
 </style>
-
+ -->
