@@ -1,19 +1,16 @@
 <script>
   import {v4 as uuidv4} from 'uuid'
   import { RandomItemStore } from '../stores';
-  import Card from './Card.svelte'
 
   let text = ''
-  // truc de modal chosen one oulala
   let chosenText = ''
-//   let btnDisabled = true
-  let message
 
-//   const handleSelect = e => rating = e.detail
 
-  const handleInput = () => {
-    message = null
+  const resetList = () => {
+    RandomItemStore.set([]) // Set the list to an empty array
+    chosenText = ''
   }
+  
 
   const randomPick = () => {
     console.log(RandomItemStore[0])
@@ -25,6 +22,11 @@
     items = value
   })()
 
+  if (items.length === 0) {
+    console.log(`Cannot random pick an item - item list empty. (items:${items})`)
+    return
+  }
+
   // Return a random item from the store
   chosenText = items[Math.floor(Math.random() * items.length)]['text']
   }
@@ -32,7 +34,7 @@
   const handleSubmit = () => {
 
     if (!text) {
-      console.log('Could not add item, text is null! text=' + text)
+      console.log(``)
       return;
     }
 
@@ -48,93 +50,47 @@
     text = ''
   }
 
-  const truc = () => {
-    console.log(RandomItemStore[0]);
-  }
-
 </script>
-<!-- BEGIN -->
-<Card>
+<div class="custom-card">
+
     <header>
-      <h2>Add an item to the list!</h2>
+      <h2 class="explanation">Add an item to the list!</h2>
     </header>
   <form on:submit|preventDefault={handleSubmit}>
     <div class="input-group">
       <!-- <input type="text" on:input={handleInput} bind:value={text} placeholder="Item"> -->
-      <input type="text" placeholder="Item" on:input={handleInput} bind:value={text} class="input input-bordered w-full max-w-xs input-random mr-2" />
-        <button class="btn btn-outline btn-add" type="submit" on:click={truc}>Add Item</button>
+      <input type="text" placeholder="Item" bind:value={text} class="input input-bordered w-full max-w-xs input-random mr-2" />
+        <button class="btn btn-outline btn-add" type="submit">Add Item</button>
+        <button class="btn btn-outline btn-random-pick" type="button" on:click={randomPick}>Random Pick</button>
+        <button class="btn btn-outline btn-reset" type="button" on:click={resetList}>Reset List</button>
+
     </div>
   
-    {#if message}
-      <div class="message">
-        {message}
-      </div>
-    {/if}
   </form>
-  </Card>
-  
-  <!-- <label for="my-modal" class="btn btn-outline btn-random-pick" on:click={randomPick}>open modal</label> -->
-
-  <button class="btn btn-outline btn-random-pick" type="notsubmit" on:click={randomPick}>Random Pick</button>
-
-
-
-
-  <h1>CHOSEN TEXT -- {chosenText} </h1>
-
-
-  <!-- MODAL RANDOM CHOSEN -->
-
-<!-- The button to open modal -->
-<!-- <label for="my-modal" class="btn">open modal</label> -->
-
-<!-- Put this part before </body> tag -->
-<!-- <div class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
-    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free! {chosenText}</p>
-    <div class="modal-action">
-      <label for="my-modal" class="btn">Yay!</label>
-    </div>
-  </div>
 </div>
-{#if showModal}
-  <div class="modal">
-    <div class="modal-box">
-      <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
-      <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free! {chosenText}</p>
-      <div class="modal-action">
-        <label for="my-modal" class="btn">Yay!</label>
-      </div>
-    </div>
-  </div>
-{/if} -->
-<!-- END -->
+  <h1 class="overline tracking-wide text-2xl result-header">Result: {chosenText} </h1>
 
-<!-- <div class="main-layout">
-  <div class="flex justify-center">
-      <div class="flex items-center">
-        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs input-random mr-2" />
-        <button class="btn btn-outline btn-add" type="submit" on:click={truc}>Add Item</button>
-      </div>
-    </div>
-</div> -->
-<!-- hover:from-pink-500 hover:to-yellow-500 -->
-
-
-
-
-
-<!-- 
 <style>
-    /* .main-layout {
-        background-color: #0f172a;
+  .custom-card {
+    background-color: #0f172a;
         padding-top: 20px;
         padding-bottom: 20px;
+        padding-right: 10px;
+        padding-left: 10px;
         margin-top: 1%;
-        margin-right: 30%;
+        margin-right: 35%;
         margin-left: 30%;
         border-radius: 20px;
-    } */
+  }
+  .result-header {
+    padding-left: 10px;
+    padding-bottom: 20px;
+    padding-top: 30px;
+    text-align: center;
+  }
+  .explanation {
+    padding-bottom: 10px;
+    text-align: center;
+  }
 </style>
- -->
+

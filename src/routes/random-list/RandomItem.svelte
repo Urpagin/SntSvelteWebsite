@@ -10,54 +10,36 @@
     }
 </script>
 
-<div class="card">
-    <!-- <div class="item-index">
-        {item.index}
-    </div> -->
-    <button class="close" on:click={() => handleDelete(item.id)}>X</button>
-    <p class="text-display">
-        {item.text}
-    </p>
+<div class="container">
+    <div class="space-x-4 space-y-4 card">
+        <button class="close" on:click={() => handleDelete(item.id)}>X</button>
+        <p class="text-display">
+            {item.text}
+        </p>
+    </div>
 </div>
-
 
 
 <style>
 
+    .container {
+        display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    
+  }
+
+  .card {
+    background-color: #17233c;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
     .text-display {
         text-align: left;
         padding-left: 10px;
-    }
-    .card {
-      background-color: #0f172a;
-      display: grid;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      top: 20px;
-      left: 20px;
-    }
-    
-    /* .item-index {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      width: 50px;
-      height: 50px;
-      background: #ff6a95;
-      color: #fff;
-      border: 1px #eee solid;
-      border-radius: 50%;
-      padding: 10px;
-      text-align: center;
-      font-size: 19px;
-    } */
-  
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      cursor: pointer;
-      background: none;
-      border: none;
     }
   </style>

@@ -6,5 +6,17 @@
     export let data;
 </script>
 <!-- <UserForm /> -->
+
 <UserInput />
-<RandomItemList />
+<div class="items">
+    <RandomItemList />
+</div>
+
+<style>
+
+    .items {
+        min-height: 68vh;
+        display: inline-flex;
+        flex-wrap: wrap;
+    }
+</style>

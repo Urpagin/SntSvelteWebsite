@@ -13,12 +13,12 @@
     } */
 
     .card {
-      background-color: #0f172a;
+      background-color: #ba279a;
         padding-top: 20px;
         padding-bottom: 20px;
-        margin-top: 1%;
-        margin-right: 30%;
-        margin-left: 30%;
+        /* margin-top: 1%;
+        margin-right: 10%;
+        margin-left: 30%; */
         border-radius: 20px;
     }
   </style>
